@@ -30,7 +30,7 @@ public class FrontPageController {
     
     @GetMapping("/")
     public String listFront(Model model) {
-        model.addAttribute("news", newsRepo.findAll(PageRequest.of(0, 5, Sort.Direction.ASC, "releaseDate")));
+        model.addAttribute("newsList", newsRepo.findAll(PageRequest.of(0, 5, Sort.Direction.ASC, "releaseDate")));
         return "index";
     }
     
