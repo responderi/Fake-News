@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import wad.repository.AuthorRepository;
 import wad.repository.CategoryRepository;
-import wad.repository.JpgRepository;
 import wad.repository.NewsRepository;
 
 /**
@@ -19,8 +18,6 @@ import wad.repository.NewsRepository;
 @Controller
 public class FrontPageController {
 
-    @Autowired 
-    private JpgRepository jpgRepo;
     
     @Autowired
     private CategoryRepository categoryRepo;
