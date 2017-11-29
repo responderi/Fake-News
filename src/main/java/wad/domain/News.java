@@ -22,7 +22,6 @@ public class News extends AbstractPersistable<Long> {
     
     private String title;
     private String lead;
-    private JpgObject jpg;
     private String text;
     private LocalDate releaseDate;
     @ManyToMany
