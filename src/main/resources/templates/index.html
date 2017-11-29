@@ -15,7 +15,7 @@
         <ul>
             <li th:each="subject : ${newsList}">
                 <a th:href="@{/news/{id}(id=${subject.id})}">
-                    <span th:text="${subject.title + ' ' + subject.lead + ' ' +}">subject and date</span>
+                    <span th:text="${subject.title + ' ' + subject.lead}">subject and date</span>
                 </a>
             </li>
         </ul>
