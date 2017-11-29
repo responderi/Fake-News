@@ -33,4 +33,5 @@ public class FrontPageController {
         model.addAttribute("news", newsRepo.findAll(PageRequest.of(0, 5, Sort.Direction.ASC, "releaseDate")));
         return "index";
     }
+    
 }

@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Add categories for news</title>
+    </head>
+    <body>
+
+        <header>
+            <p>Add categories for news</p>
+        </header>
+
+        <form th:action="/add" method="POST">
+            <p>Category: <input name="categories"></input></p>
+            <input type="submit" value="Add"></input>
+        </form>
+
+    </body>
+</html>
