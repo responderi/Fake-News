@@ -6,8 +6,8 @@
     </head>
     <body>
 
-        <header>
-            <p>Add authors for news</p>
+        <header th:replace="fragments/header :: header">
+            <p>header with links etc</p>
         </header>
 
         <form th:action="/add" method="POST">

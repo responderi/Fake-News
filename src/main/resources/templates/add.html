@@ -5,11 +5,9 @@
         <title>Add news</title>
     </head>
     <body>
-
-        <header>
-            <p>Add news</p>
+        <header th:replace="fragments/header :: header">
+            <p>header with links etc</p>
         </header>
-
         <form th:action="@{/add}" method="POST">
             <p>Title: <input name="title"></input></p>
             <p>Lead: <input name="lead"></input></p>
