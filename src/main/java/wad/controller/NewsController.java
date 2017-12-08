@@ -2,10 +2,15 @@
 package wad.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import wad.domain.Author;
 import wad.domain.News;
 import wad.repository.AuthorRepository;
 import wad.repository.CategoryRepository;
@@ -33,7 +38,7 @@ public class NewsController {
     }
     
     @PostMapping("/add")
-    public String addQuestion(@RequestParam String title, @RequestParam String lead, @RequestParam String text) {
+    public String addNews(@RequestParam String title, @RequestParam String lead, @RequestParam String text) {
  
         News news = new News();
         news.setTitle(title);
@@ -44,4 +49,11 @@ public class NewsController {
  
         return "redirect:/";
     }
+    
+    @GetMapping("/{id}")
+    public String listFront(@PathVariable Long id, Model model) {
+        model.addAttribute("news", newsRepo.getOne(id));
+        return "news";
+    }
+    
 }

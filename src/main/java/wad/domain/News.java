@@ -2,6 +2,7 @@
 package wad.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -28,4 +29,20 @@ public class News extends AbstractPersistable<Long> {
     private List<Author> authors;
     @ManyToMany
     private List<Category> categories;
+    
+    public void addAuthor(Author author) {
+        if (this.authors == null) {
+            this.authors = new ArrayList<Author>();
+        }
+ 
+        this.authors.add(author);
+    }
+    
+    public void addCategory(Category category) {
+        if (this.categories == null) {
+            this.categories = new ArrayList<Category>();
+        }
+ 
+        this.categories.add(category);
+    }
 }

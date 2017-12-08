@@ -1,6 +1,7 @@
 
 package wad.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -21,4 +22,12 @@ public class Author extends AbstractPersistable<Long> {
     private String name;
     @ManyToMany(mappedBy = "authors")
     private List<News> news;
+    
+    public void addNews(News news) {
+        if (this.news == null) {
+            this.news = new ArrayList<News>();
+        }
+ 
+        this.news.add(news);
+    }
 }

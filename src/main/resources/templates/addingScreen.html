@@ -1,8 +1,8 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
-        <title>Add authors and categories for news</title>
+        <title>Fake News</title>
     </head>
     <body>
 
@@ -10,10 +10,14 @@
             <p>header with links etc</p>
         </header>
 
-        <form th:action="/add" method="POST">
-            <p>Category: <input name="categories"></input></p>
-            <input type="submit" value="Add"></input>
-        </form>
-   
+        <h1>Add authors and categories</h1>
+
+        <ul><li>
+                <a href="addAuthors">Add author</a>
+            </li></ul>
+        <ul><li>
+                <a href="addCategories">Add category</a>
+            </li></ul>
+
     </body>
 </html>
