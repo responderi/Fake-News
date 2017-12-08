@@ -11,7 +11,8 @@
         </header>
 
         <h1><span th:text="${news.title}">News</span></h1>
-
+        <h2><span th:text="${news.releaseDate}">time</span></h2>
+        
         <ul>
             <li>
                 <span th:text="${news.lead}">lead</span>
@@ -24,7 +25,8 @@
 
             </li>
         </ul>
-
+        
+        
 
         <ul><li>
                 <a href="/">Front page</a>
