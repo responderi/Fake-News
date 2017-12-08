@@ -50,7 +50,7 @@ public class NewsController {
         return "redirect:/";
     }
     
-    @GetMapping("/{id}")
+    @GetMapping("/news/{id}")
     public String listFront(@PathVariable Long id, Model model) {
         model.addAttribute("news", newsRepo.getOne(id));
         return "news";
