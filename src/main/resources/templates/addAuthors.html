@@ -2,19 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
-        <title>Add authors and categories for news</title>
+        <title>Add author</title>
     </head>
     <body>
-
         <header th:replace="fragments/header :: header">
             <p>header with links etc</p>
         </header>
-
-        <form th:action="/add" method="POST">
-            <p>Author: <input name="authors"></input></p>
+        <form th:action="@{/news/{id}(id=${news.id})/modify/author}" method="POST">
+            <p>Author: <input name="name"></input></p>
             <input type="submit" value="Add"></input>
         </form>
-        
-   
+        <h4><a href="/news/{id}(id=${news.id})/modify">Cancel</a></h4>
+
     </body>
 </html>

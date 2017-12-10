@@ -52,7 +52,7 @@ public class NewsController {
     @GetMapping("/news/{id}/modify")
     public String modify(@PathVariable Long id, Model model) {
         model.addAttribute("news", newsRepo.getOne(id));
-        return "news";
+        return "modify";
     }
 
     @Transactional
@@ -70,9 +70,47 @@ public class NewsController {
     }
 
     @GetMapping("/news/{id}")
-    public String listFront(@PathVariable Long id, Model model) {
+    public String newsPage(@PathVariable Long id, Model model) {
         model.addAttribute("news", newsRepo.getOne(id));
         return "news";
+    }
+    
+    @GetMapping("/news/{id}/modify/author")
+    public String authors(@PathVariable Long id, Model model) {
+        model.addAttribute("news", newsRepo.getOne(id));
+        return "addAuthors";
+    }
+    
+    @PostMapping("/news/{id}/modify/author")
+    public String addAuthor(@PathVariable Long id, @RequestParam String name) {
+
+        News news = newsRepo.getOne(id);
+        Author author = new Author();
+        author.setName(name);
+        news.addAuthor(author);
+        author.addNews(news);
+        authorRepo.save(author);
+        newsRepo.save(news);
+        return "redirect:/news/{id}/modify";
+    }
+    
+    @GetMapping("/news/{id}/modify/category")
+    public String categories(@PathVariable Long id, Model model) {
+        model.addAttribute("news", newsRepo.getOne(id));
+        return "addCategories";
+    }
+    
+    @PostMapping("/news/{id}/modify/category")
+    public String addCategory(@PathVariable Long id, @RequestParam String name) {
+
+        News news = newsRepo.getOne(id);
+        Category category = new Category();
+        category.setName(name);
+        news.addCategory(category);
+        category.addNews(news);
+        categoryRepo.save(category);
+        newsRepo.save(news);
+        return "redirect:/news/{id}/modify";
     }
 
 }

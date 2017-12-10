@@ -13,12 +13,12 @@
         <h1>Add authors and categories</h1>
 
         <ul><li>
-                <a href="addAuthors">Add author</a>
+                <a href="@{/news/{id}(id=${news.id})/modify/category}">Add category</a>
             </li></ul>
         <ul><li>
-                <a href="addCategories">Add category</a>
+                <a href="@{/news/{id}(id=${news.id})/modify/author}">Add author</a>
             </li></ul>
-        <form th:action="@{/news/{id}(id=${news.id})}/modify" th:method="DELETE"><input type="submit" value="Remove news"/></form>
+        <form th:action="@{/news/{id}(id=${news.id})/modify}" th:method="DELETE"><input type="submit" value="Remove news"/></form>
         <ul><li>
                 <a href="@{/}">Ready!</a>
             </li></ul>
