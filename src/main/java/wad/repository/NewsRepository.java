@@ -11,5 +11,5 @@ import wad.domain.News;
  * @author rovarje
  */
 public interface NewsRepository extends JpaRepository<News, Long>{
-    
+
 }

@@ -18,6 +18,10 @@
         <ul><li>
                 <a href="addCategories">Add category</a>
             </li></ul>
+        <form th:action="@{/news/{id}(id=${news.id})}/modify" th:method="DELETE"><input type="submit" value="Remove news"/></form>
+        <ul><li>
+                <a href="@{/}">Ready!</a>
+            </li></ul>
 
     </body>
 </html>
