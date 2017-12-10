@@ -44,19 +44,20 @@ public class NewsController {
         news.setTitle(title);
         news.setLead(lead);
         news.setText(text);
-
+        news.setRead(0);
         newsRepo.save(news);
-        return "redirect:/";
+        Long id = news.getId();
+        return "redirect:/modify/" + id;
     }
 
-    @GetMapping("/news/{id}/modify")
+    @GetMapping("/modify/{id}")
     public String modify(@PathVariable Long id, Model model) {
         model.addAttribute("news", newsRepo.getOne(id));
         return "modify";
     }
 
     @Transactional
-    @DeleteMapping("/news/{id}/modify")
+    @DeleteMapping("/modify/{id}")
     public String delete(@PathVariable Long id) {
         News toDelete = newsRepo.getOne(id);
         for (Author author : toDelete.getAuthors()) {
@@ -71,17 +72,22 @@ public class NewsController {
 
     @GetMapping("/news/{id}")
     public String newsPage(@PathVariable Long id, Model model) {
+        News news = newsRepo.getOne(id);
+        news.setRead(news.getRead() + 1);
+        newsRepo.save(news);
         model.addAttribute("news", newsRepo.getOne(id));
+        model.addAttribute("authors", newsRepo.getOne(id).getAuthors());
+        model.addAttribute("categories", newsRepo.getOne(id).getCategories());
         return "news";
     }
-    
-    @GetMapping("/news/{id}/modify/author")
+
+    @GetMapping("/modify/author/{id}")
     public String authors(@PathVariable Long id, Model model) {
         model.addAttribute("news", newsRepo.getOne(id));
         return "addAuthors";
     }
-    
-    @PostMapping("/news/{id}/modify/author")
+
+    @PostMapping("/modify/author/{id}")
     public String addAuthor(@PathVariable Long id, @RequestParam String name) {
 
         News news = newsRepo.getOne(id);
@@ -91,26 +97,48 @@ public class NewsController {
         author.addNews(news);
         authorRepo.save(author);
         newsRepo.save(news);
-        return "redirect:/news/{id}/modify";
+        return "redirect:/modify/{id}";
     }
-    
-    @GetMapping("/news/{id}/modify/category")
-    public String categories(@PathVariable Long id, Model model) {
-        model.addAttribute("news", newsRepo.getOne(id));
-        return "addCategories";
-    }
-    
-    @PostMapping("/news/{id}/modify/category")
-    public String addCategory(@PathVariable Long id, @RequestParam String name) {
 
+    @GetMapping("/modify/category/{id}")
+    public String categories(@PathVariable Long id, Model model) {
+        if (categoryRepo.findAll().isEmpty()) {
+            Category category = new Category();
+            category.setName("General");
+            categoryRepo.save(category);
+        }
+        model.addAttribute("news", newsRepo.getOne(id));
+        model.addAttribute("categories", categoryRepo.findAll());
+        return "assignCategory";
+    }
+
+    @PostMapping("/modify/category/{id}")
+    public String addCategory(@PathVariable Long id, @RequestParam Long categoryId) {
         News news = newsRepo.getOne(id);
-        Category category = new Category();
-        category.setName(name);
+        Category category = categoryRepo.getOne(categoryId);
         news.addCategory(category);
         category.addNews(news);
         categoryRepo.save(category);
         newsRepo.save(news);
-        return "redirect:/news/{id}/modify";
+        return "redirect:/modify/{id}";
+    }
+
+    @GetMapping("/category/new/{id}")
+    public String getCreateCategory(@PathVariable Long id, Model model) {
+        model.addAttribute("categories", categoryRepo.findAll());
+        model.addAttribute("news", newsRepo.getOne(id));
+        return "newCategory";
+    }
+
+    @PostMapping("/category/new/{id}")
+    public String createCategory(@PathVariable Long id, @RequestParam String name) {
+        if (!categoryRepo.findAll().contains(categoryRepo.findByName(name))) {
+
+            Category category = new Category();
+            category.setName(name);
+            categoryRepo.save(category);
+        }
+        return "redirect:/modify/category/{id}";
     }
 
 }

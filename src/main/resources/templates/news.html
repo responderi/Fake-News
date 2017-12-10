@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8" />
         <title>Fake News</title>
     </head>
     <body>
@@ -10,26 +9,27 @@
             <p>header with links etc</p>
         </header>
 
-        <h1><span th:text="${news.title}">News</span></h1>
-        <h2><span th:text="${news.releaseDate}">time</span></h2>
-
+        <h1><span th:text="${news.title}">news</span></h1>
+        <h4><span th:text="${news.releaseDate}">time</span></h4>
+        Author(s):
         <ul>
-            <li>
-                <span th:text="${news.lead}">lead</span>
-
+            <li th:each="author : ${authors}">
+                <span th:text="${author.name}">author</span>
             </li>
-        </ul>
+        </ul><br/>
+        Categories:
         <ul>
-            <li>
-                <span th:text="${news.text}">text</span>
-
+            <li th:each="category : ${categories}">
+                <span th:text="${category.name}">category</span>
             </li>
-        </ul>
+        </ul><br/>
 
-
+        <div>
+        <span th:text="${news.text}">text</span><br/>
+        </div>
 
         <h4>
-            <a href="@{/modify}">Edit news</a>
+            <a th:href="@{/modify/{id}(id=${news.id})}">Edit news</a>
         </h4>
 
     </body>

@@ -10,21 +10,15 @@
             <p>header with links etc</p>
         </header>
 
-        <h1>Latest news</h1>
+        <h1 th:text="${category.name}">category news</h1>
 
         <ol>
             <li th:each="subject : ${newsList}">
                 <a th:href="@{/news/{id}(id=${subject.id})}">
                     <span th:text="${subject.title}">subject</span>
                 </a><br/>
-                    <span th:text="${subject.lead}">lead</span>
+                <span th:text="${subject.releaseDate}">release date</span>
             </li>
-                
         </ol>
-
-        <ul><li>
-                <a href="add">Add news</a>
-            </li></ul>
-
     </body>
 </html>

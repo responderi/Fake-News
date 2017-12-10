@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8" />
         <title>Fake News</title>
     </head>
     <body>
@@ -13,14 +12,14 @@
         <h1>Add authors and categories</h1>
 
         <ul><li>
-                <a href="@{/news/{id}(id=${news.id})/modify/category}">Add category</a>
+                <a th:href="@{/modify/category/{id}(id=${news.id})}">Add category</a>
             </li></ul>
         <ul><li>
-                <a href="@{/news/{id}(id=${news.id})/modify/author}">Add author</a>
+                <a th:href="@{/modify/author/{id}(id=${news.id})}">Add author</a>
             </li></ul>
-        <form th:action="@{/news/{id}(id=${news.id})/modify}" th:method="DELETE"><input type="submit" value="Remove news"/></form>
+        <form th:action="@{/modify/{id}(id=${news.id})}" th:method="DELETE"><input type="submit" value="Remove news"/></form>
         <ul><li>
-                <a href="@{/}">Ready!</a>
+                <a th:href="@{/}">Ready!</a>
             </li></ul>
 
     </body>

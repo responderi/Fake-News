@@ -7,10 +7,12 @@
     <body>
 
         <header th:fragment="header">
-            <h4><a th:href="@{/}">front page</a></h4>
+            <h4><a th:href="@{/}">Front page</a></h4>
+            <h4><a th:href="@{/published}">List news by time</a></h4>
+            <h4><a th:href="@{/popular}">Most read news</a></h4>
             <ul>
                 <li th:each="category : ${categories}">
-                    <a th:href="@{/category/{id}(id=${category.id})}">
+                    <a th:href="@{/category/{name}(name=${category.name})}">
                         <span th:text="${category.name}">category</span>
                     </a>
                 </li>

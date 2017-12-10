@@ -23,6 +23,7 @@ public class News extends AbstractPersistable<Long> {
     private String title;
     private String lead;
     private String text;
+    private long read;
     private LocalDateTime releaseDate;
     @ManyToMany
     private List<Author> authors;

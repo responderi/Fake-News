@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Assign category</title>
+    </head>
+    <body>
+        <header th:replace="fragments/header :: header">
+            <p>header with links etc</p>
+        </header>
+        <form th:action="@{/modify/category/{id}(id=${news.id})}" method="POST">
+            Assign category:<br/>
+            <select name="categoryId">
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+            <input type="submit" value="Assign"></input>
+        </form>
+        <h3><a th:href="@{/category/new/{id}(id=${news.id})}">Add new category</a></h3>
+        <h4><a th:href="@{/modify/{id}(id=${news.id})}">Cancel</a></h4>
+            
+    </body>
+</html>
