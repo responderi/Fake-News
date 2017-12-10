@@ -7,8 +7,8 @@
     <body>
 
         <header th:fragment="header">
+            <h4><a th:href="@{/}">front page</a></h4>
             <ul>
-                <li><a th:href="@{/}">front page</a></li>
                 <li th:each="category : ${categories}">
                     <a th:href="@{/category/{id}(id=${category.id})}">
                         <span th:text="${category.name}">category</span>
