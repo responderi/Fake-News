@@ -46,8 +46,7 @@ public class NewsController {
         news.setText(text);
 
         newsRepo.save(news);
-        Long id = news.getId();
-        return "redirect:/news/{" + id + "}/modify";
+        return "redirect:/";
     }
 
     @GetMapping("/news/{id}/modify")
