@@ -51,4 +51,5 @@ public class NewsService {
         news.setRead(news.getRead() + 1);
         newsRepo.save(news);
     }
+    
 }
